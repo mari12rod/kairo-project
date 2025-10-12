@@ -1,19 +1,25 @@
-function App() {
-  return (
-    <div className="flex flex-col items-center justify-center h-screen bg-indigo-200 text-center">
-      <h1 className="text-5xl font-bold text-indigo-700 mb-4">
-        🌿 Bienvenida a KAIRO
-      </h1>
-      <p className="text-gray-700 text-lg max-w-xl">
-        Tu diario de emociones. Registra cómo te sientes cada día y descubre
-        patrones en tu bienestar emocional 💜
-      </p>
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import EmotionForm from "./components/EmotionForm";
+import EmotionList from "./components/EmotionList";
 
-      <button className="mt-8 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-all">
-        Empezar ahora
-      </button>
-    </div>
+export default function App() {
+  return (
+    <BrowserRouter>
+      <nav className="bg-purple-600 text-white p-3 flex gap-4">
+        <Link to="/">Inicio</Link>
+        <Link to="/register">Registrar Emoción</Link>
+        <Link to="/history">Historial</Link>
+      </nav>
+
+      <div className="p-4">
+        <Routes>
+          <Route path="/" element={<h1 className="text-xl">Bienvenida a KAIRO 💜</h1>} />
+          <Route path="/register" element={<EmotionForm />} />
+          <Route path="/history" element={<EmotionList />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
-export default App;
+
